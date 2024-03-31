@@ -1,11 +1,15 @@
 import React from 'react'
 import TodoCard from './TodoCard'
+import { useSelector } from 'react-redux';
+import { deleteTodo } from '../features/todo';
 
 function Todos() {
+    const todos =  useSelector(state => state.todos);
+    
   return (
     <div className='flex flex-col w-full items-start'>
         <h1 className='text-2xl font-bold text-orange-500 underline'>Todos</h1>
-        <TodoCard />
+        {todos.map()}
     </div>
   )
 }

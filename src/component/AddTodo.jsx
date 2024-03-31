@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { addTodo } from '../features/todo';
+import { useDispatch } from 'react-redux';
 
 function AddTodo() {
-    const [inputText, setInputText] = useState('')
+    const [inputText, setInputText] = useState('');
+    const dispatch = useDispatch();
     function handleAddTodo(e)  {
+        if(inputText.length <= 0 ) return;
         e.preventDefault();
+        dispatch(addTodo(inputText));
+        setInputText('');
     }
   return (
     <div className='w-full max-w-[600px]  mx-auto px-4  gap-2 flex flex-row flex-wrap justify-center items-center'>
