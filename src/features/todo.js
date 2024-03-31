@@ -16,15 +16,22 @@ const initialState = {
         addTodo : (state, action) => {
             const todo = {
                 id : nanoid(),
-                text : action.payload.text
+                text : action.payload
             }
             state.todos.push(todo);   
         },
+
         deleteTodo : (state, action) => {
-            state.todos.filter((todo) => todo.id !== action.payload.id);
+            state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+        },
+
+        updateTodo : (state, action) => {
+            state.todos = state.todos.map(
+                (todo) => todo.id === action.payload ? todo.text = todo.payload : todo
+            )
         }
     }
 });
 
-export const  {addTodo, deleteTodo } = todoSlices.actions;
+export const  {addTodo, deleteTodo, updateTodo } = todoSlices.actions;
 export default todoSlices.reducer;
