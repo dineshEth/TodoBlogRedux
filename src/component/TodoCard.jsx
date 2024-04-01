@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { editImage, deleteImage, save } from '../assets'
 import { useDispatch } from 'react-redux';
 import { deleteTodo, updateTodo } from '../features/todo';
+import {toast}  from 'react-toastify'
+import Toastify from './Toastify';
 
 function TodoCard({text, id}) {
     const [editable, setEditable] = useState(false);
@@ -10,11 +12,13 @@ function TodoCard({text, id}) {
     const dispatch = useDispatch();
     function handleDeleteTodo() {
         dispatch(deleteTodo(id));
+        toast.error('Todo is been removed 😡 ')
     }
     function handleUpdateTodo(e) {
         e.preventDefault();
         dispatch(updateTodo({id, 'text':textValue}));
         setEditable(false);
+        toast.success('Todo is been Updated 😊');
     }
   return (
     <div className='w-full mx-auto my-4  flex bg-blue-200 py-1 px-4 rounded-sm flex-row justify-between'>
