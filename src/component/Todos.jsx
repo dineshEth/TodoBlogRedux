@@ -6,7 +6,7 @@ function Todos() {
     const todos =  useSelector(state => state.todos);
     
   return (
-    <div className='flex flex-col w-full items-start'>
+    <div className='flex my-4 flex-col w-full items-start'>
         <h1 className='text-2xl font-bold text-orange-500 underline'>Todos</h1>
         {todos.map((todo) => (
             <TodoCard key={todo.id} text={todo.text}  id={todo.id}/>

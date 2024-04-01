@@ -1,12 +1,7 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-    todos: [
-        {
-            id : 1,
-            text: "Hello From redux"
-        }
-    ]
+    todos: [],
 }
 
  export const todoSlices = createSlice ({
@@ -26,10 +21,9 @@ const initialState = {
         },
 
         updateTodo : (state, action) => {
-            state.todos = state.todos.map(
-                (todo) => todo.id === action.payload ? todo.text = todo.payload : todo
-            )
-        }
+            const index = state.todos.findIndex(todo => todo.id === action.payload.id);
+            state.todos[index].text  = action.payload.text; 
+        },
     }
 });
 
